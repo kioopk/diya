@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find all the books you need for Semester 1. Browse through our collection and get the best resources for your studies.">
+    <meta name="keywords" content="library, semester 1 books, book collection, student resources">
+    <title>Semester 1 Books</title>
+    <link rel="stylesheet" href="{% static 'library/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="left-section">
+            <a href="{% url 'library:home_page' %}" class="home-button">Home</a>
+            
+        </div>
+        <!-- <div class="search-bar">
+            <input type="text" placeholder="Search books...">
+        </div> -->
+        <div class="right-section">
+        <a href="{% url 'order:cart' %}" class="logout-button">Cart</a>
+        {% if user.is_authenticated %}
+        <form  action="{% url 'students:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button" >Logout</button>
+        </form>
+        {% else %}
+        <form  action="{% url 'students:login' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button" >Login</button>
+        </form>
+        {% endif %}
+        </div>
+    </div>
+    <div class="container">
+        <h2>Semester 1 Books</h2>
+        <div class="books">
+            {% for book in books %}
+            <div class="book-card">
+                <img src="{{book.image.url}}" alt="Cover of Book Title 1">
+                <div class="book-card-body">
+                    
+                    <h3 class="book-title">{{book.name}}</h3>
+                    <a href="{% url 'order:add_2_order' book.id %}"><button class="order-button">Order</button></a>
+                    <p class="book-author">Quantity: {{book.quantity}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

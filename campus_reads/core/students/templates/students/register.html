@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="{% static 'students/me.css' %}">
+</head>
+<body>
+    <div class="register-container">
+    <div class="register-header">Register</div>
+    <div class="register-body">
+        <form method="post">
+            {%csrf_token%}
+            {{form}}
+            <button type="submit" >SignUp</button>
+        </form>
+        <p>already got an account? <a href="{% url 'students:login' %}">Login here</a></p>
+    </div>
+</div>
+</body>
+</html>

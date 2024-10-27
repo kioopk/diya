@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find all the books you need for Semester 1. Browse through our collection and get the best resources for your studies.">
+    <meta name="keywords" content="library, semester 1 books, book collection, student resources">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eba9a9;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h3 {
+            margin: 10px;
+            font-family: 'Georgia', serif;
+        }
+        .table-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        .cart-table th, .cart-table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        .cart-table th {
+            background-color: #f4f4f4;
+            font-size: 1.1em;
+        }
+        .cart-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .cart-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .cart-table td {
+            border-bottom: 1px solid #dddddd;
+        }
+        .cart-table .total {
+            font-weight: bold;
+            color: #333;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        .back-button {
+            background-color: black;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            margin-right: 10px;
+        }
+        .back-b {
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+            .header .search-bar {
+                width: 100%;
+                margin: 10px 0;
+		        order:2;
+            }
+            .header .right-section {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: flex-end;
+            }
+            .header .left-section {
+                 order:1;
+
+            }
+            .header .logout-button, .header .user-name {
+                margin: 5px;
+	            order:1;
+            }
+
+            .button-container {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .back-button, .back-b {
+                width: auto;
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="table-container">
+            <table class="cart-table" id="myTable">
+                <tr>
+                    <th>Book Title</th>    
+                </tr>
+                {% for book in books %}
+                <tr>
+                    <td>{{book}}</td>
+                    <td><a href="{% url 'order:remove_book' book %}">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="button-container">
+                <a href="{% url 'library:home_page' %}" class="back-button">Go Back</a>
+                <a href="{% url 'order:send_mail' %}" class="back-b">Save</a>
+                
+            </div>
+            <p>note* once you submit your cart your data will be sent to library staff of bca department and folloing books will be saved for you, u can collect them by paying offline visit to the department or contact respective faculty</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Books</title>
+    <link rel="stylesheet" href="{% static 'library/index.css'%}">
+</head>
+<body>
+    <div class="header">
+        <div class="left-section">
+            <a href="{% url 'library:home_page' %}" class="home-button">Home</a>
+        </div>
+        <!-- <div class="search-bar">
+            <input type="text" placeholder="Search books...">
+        </div> -->
+        <div class="right-section">
+        <a href="{% url 'order:cart' %}" class="logout-button">Cart</a>
+        {% if user.is_authenticated %}
+        <form  action="{% url 'students:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button" >Logout</button>
+        </form>
+        {% else %}
+        <form  action="{% url 'students:login' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button" >Login</button>
+        </form>
+        {% endif %}
+        </div>
+    </div>
+    <div class="introduction">
+        <h1>Welcome to Our Library</h1>
+        <p>Explore our extensive collection of books categorized by semester to support your <strong>BCA</strong> journey. 
+           Find textbooks, reference materials, and more to enhance your learning experience and excel in your studies.</p>
+    </div>
+    
+
+    <div class="container">
+
+        <div class="row">
+            {% for sem, books in books_by_sem_1to3.items %}
+            <div class="semester-card">
+                <a href="{% url 'library:books_details' sem %}" class="semester-card-link">
+                <h2 class="semester-title">Semester {{sem}}</h2>
+                <div class="books">
+                    {% for book in books %}
+                    <div class="book-card">
+                        <img src="{{book.image.url}}" alt="Book 1">
+                        <div class="book-card-body">
+                            <h3 class="book-title">{{book.name}}</h3>
+                            <!-- <p class="book-author">{{book.quantity}}</p> -->
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            {% for sem, books in books_by_sem_4to6.items %}
+            <div class="semester-card">
+                <h2 class="semester-title">Semester {{sem}}</h2>
+                <div class="books">
+                    {% for book in books %}
+                    <div class="book-card">
+                        <img src="{{book.image.url}}" alt="Book 1">
+                        <div class="book-card-body">
+                            <h3 class="book-title">{{book.name}}</h3>
+                            <!-- <p class="book-author">{{book.quantity}}</p> -->
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eba9a9;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.header {
+    background-color: #8363aa;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .left-section {
+    display: flex;
+    align-items: center;
+}
+.header .title {
+    font-size: 1.5em;
+    margin-left: 10px;
+}
+.header .home-button {
+    background-color: white;
+    color: #0f1111;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+}
+.header .search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+    max-width: 300px;
+}
+.header .search-bar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.header .right-section {
+    display: flex;
+    align-items: center;
+}
+.header .logout-button {
+    background-color: white;
+    color: #0f1111;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.right-section > form > button {
+    cursor: pointer;
+}
+
+.introduction {
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #cde8ff;
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+.introduction h1 {
+    font-size: 24px;
+    color: #333;
+}
+.introduction p {
+    font-size: 16px;
+    color: #666;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.semester-card {
+    background-color: #cde5e7;
+    color: black;
+    border-radius: 10px;
+    width: 30%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s;
+}
+.semester-card:hover {
+    transform: scale(1.05);
+}
+.semester-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.semester-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit; /* Inherit text color to remove link color */
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.book-card {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    width: 48%;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.book-card img {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.book-card-body {
+    padding: 10px;
+}
+.book-title {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+.book-author {
+    font-size: 0.9em;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .semester-card {
+        width: 48%;
+    }
+}
+@media (max-width: 576px) {
+    .semester-card {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .book-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    /* .semester-card {
+        transition: none;
+    } */
+    .semester-card:hover {
+        transform: none;
+    }
+    .search-bar{
+        display: none;
+    }
+    
+}
